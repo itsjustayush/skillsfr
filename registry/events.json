@@ -1,5 +1,17 @@
 [
   {
+    "id": "evt-1793536045352",
+    "timestamp": "2026-11-01T12:27:25.352Z",
+    "type": "live_sync_sweep",
+    "scannedSources": [
+      "GitHub",
+      "Hugging Face"
+    ],
+    "itemsScanned": 20,
+    "newlyIndexed": 0,
+    "totalIndexed": 20
+  },
+  {
     "id": "evt-1793535545716",
     "timestamp": "2026-11-01T12:19:05.716Z",
     "type": "live_sync_sweep",
