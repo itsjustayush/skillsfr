@@ -111,8 +111,13 @@ if (STARTER_COMMANDS[command] && args[1]) {
   const projectName = args[1];
   const generator = STARTER_COMMANDS[command];
   const cmd = generator(projectName);
+  const isDryRun = args.includes('--dry-run');
   console.log(`🚀 Scaffolding ${command} project "${projectName}" using command:`);
   console.log(`   \x1b[36m${cmd}\x1b[0m\n`);
+  if (isDryRun) {
+    console.log(`\x1b[33m%s\x1b[0m`, `[Dry Run] Command verified. Skipped actual execution.`);
+    process.exit(0);
+  }
   try {
     execSync(cmd, { stdio: 'inherit' });
     console.log(`\x1b[32m%s\x1b[0m`, `✨ Successfully generated ${projectName}!`);
