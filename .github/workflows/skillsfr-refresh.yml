@@ -36,10 +36,13 @@ jobs:
       - name: Install dependencies
         run: npm ci || npm install
 
-      - name: Run 24/7 Ingestion & Scoring Crawler
+      - name: Run 24/7 Live Sync Ingestion (GitHub, Hugging Face, Kaggle)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/indexer.js
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: node scripts/live_sync.js
 
       - name: Regenerate README with chronological categorized entries
         run: node scripts/update_readme.js

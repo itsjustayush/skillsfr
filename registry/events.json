@@ -1,5 +1,41 @@
 [
   {
+    "id": "evt-1793535545716",
+    "timestamp": "2026-11-01T12:19:05.716Z",
+    "type": "live_sync_sweep",
+    "scannedSources": [
+      "GitHub",
+      "Hugging Face"
+    ],
+    "itemsScanned": 20,
+    "newlyIndexed": 0,
+    "totalIndexed": 20
+  },
+  {
+    "id": "evt-1793534204677",
+    "timestamp": "2026-11-01T11:56:44.677Z",
+    "type": "live_sync_sweep",
+    "scannedSources": [
+      "GitHub",
+      "Hugging Face"
+    ],
+    "itemsScanned": 20,
+    "newlyIndexed": 10,
+    "totalIndexed": 20
+  },
+  {
+    "id": "evt-1793534034675",
+    "timestamp": "2026-11-01T11:53:54.675Z",
+    "type": "live_sync_sweep",
+    "scannedSources": [
+      "GitHub",
+      "Hugging Face"
+    ],
+    "itemsScanned": 10,
+    "newlyIndexed": 10,
+    "totalIndexed": 10
+  },
+  {
     "id": "evt-1793531517892",
     "timestamp": "2026-11-01T11:11:57.892Z",
     "type": "crawler_sweep",

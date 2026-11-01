@@ -126,14 +126,36 @@ Result: 4,200 tokens (88% reduction vs 38,400 raw dump)
 
 ---
 
-## 📬 Automated 24/7 Pipeline
+## 🔄 Real-time Multi-Platform Sync Engine
 
-The background ingestion worker runs on GitHub Actions every 6 hours:
-1. Queries official endpoints (GitHub REST API with ETags, Hugging Face, Kaggle feeds).
-2. Calculates deterministic hashes to skip unchanged repositories.
-3. Computes ranking and verification metrics.
-4. Updates `registry/resources.json` and `registry/events.json`.
-5. Automatically regenerates the protected section of this README!
+Skillsfr continuously monitors and synchronizes open-source repositories, datasets, and benchmark manifests across the Internet:
+
+| Platform | Resource Dimensions | Ingestion Mechanism | Requirements |
+|---|---|---|---|
+| **GitHub** | MCP Servers, Agent Skills, Starter Packs | Search API (`mcp server`, `topic:agent-skills`) & Webhooks | Public (60 req/hr) or `GITHUB_TOKEN` (5,000 req/hr) |
+| **Hugging Face** | Evaluation Datasets, Leaderboards, Models | Hub API (`/api/datasets?search=agent`) | Free Read API or optional `HF_TOKEN` |
+| **Kaggle** | Datasets & Ground Truth Benchmarks | Public Metadata Feeds & API Mirrors | Optional `KAGGLE_USERNAME` & `KAGGLE_KEY` |
+| **Smithery / OpenML** | MCP Tool Manifests & Open Benchmarks | Open-Source JSON Endpoints & Mirrors | Zero credentials required |
+
+### Run Real-time Sync Locally
+
+```bash
+# Execute full discovery sweep across GitHub and Hugging Face, then update README
+npm run sync
+
+# Regenerate README from registry cache
+npm run refresh-readme
+```
+
+### 24/7 Serverless Automation Options
+
+1. **GitHub Actions Scheduled Cron** (Included out of the box in `.github/workflows/skillsfr-refresh.yml`):
+   - Runs every 6 hours (configurable to hourly).
+   - Automatically crawls upstream sources, computes multi-signal scores, and commits fresh updates back to the repository with zero server overhead.
+2. **Vercel Serverless Sync & Crons** (Configured in `vercel.json` and `api/sync.ts`):
+   - Triggers `GET /api/sync` on an automated interval.
+3. **Instant Webhooks** (Configured in `api/webhooks.ts`):
+   - Point GitHub repository webhooks to `https://skillsfr.vercel.app/api/webhooks/registry` for instant re-indexing on pushes or releases.
 
 ---
 
