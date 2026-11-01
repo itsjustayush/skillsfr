@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SkillsfrResourceRecord",
+  "description": "Canonical schema for indexed developer skills, MCPs, workflows, plugins, tools, datasets, and benchmarks.",
+  "type": "object",
+  "required": [
+    "id",
+    "source",
+    "owner",
+    "repository",
+    "name",
+    "kind",
+    "sourceUrl",
+    "contentHash",
+    "status",
+    "riskLevel",
+    "scores",
+    "firstIndexedAt",
+    "lastUpdatedAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable canonical ID format: source:owner/repository(:path), e.g. github:anthropics/skills:frontend-design"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["github", "huggingface", "kaggle", "smithery", "openml", "skillsmp", "community"]
+    },
+    "owner": {
+      "type": "string",
+      "description": "Organization or author username"
+    },
+    "repository": {
+      "type": "string",
+      "description": "Repository or package name"
+    },
+    "path": {
+      "type": "string",
+      "description": "Relative directory or file path within repository, or empty string for repo root"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable resource name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe identifier"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["skill", "workflow", "plugin", "mcp", "tool", "dataset", "benchmark", "kit"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Clear synopsis of the resource capability"
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "url": { "type": "string" },
+        "verified": { "type": "boolean" }
+      },
+      "required": ["name"]
+    },
+    "sourceUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "repositoryUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "sourceRevision": {
+      "type": "string",
+      "description": "Git commit hash, release tag, or revision identifier"
+    },
+    "contentHash": {
+      "type": "string",
+      "description": "SHA-256 fingerprint of normalized name, description, path, content, and install metadata"
+    },
+    "license": {
+      "type": "string",
+      "description": "SPDX identifier or 'unknown'"
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "stars": { "type": "integer" },
+        "forks": { "type": "integer" },
+        "downloads": { "type": ["integer", "null"] },
+        "communityRating": { "type": ["number", "null"] },
+        "reviewCount": { "type": "integer" }
+      },
+      "required": ["stars"]
+    },
+    "primaryCategory": {
+      "type": "string",
+      "description": "Category with highest classification score >= 0.70"
+    },
+    "secondaryCategories": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Categories scoring between 0.45 and 0.69"
+    },
+    "capabilityTags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "installCommand": {
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "indexed",
+        "parsed",
+        "metadata-checked",
+        "install-tested",
+        "runtime-tested",
+        "security-reviewed",
+        "stale",
+        "broken",
+        "delisted"
+      ]
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": ["unknown", "low", "medium", "high", "critical"]
+    },
+    "riskScore": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "relevance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "compatibility": { "type": "number", "minimum": 0, "maximum": 1 },
+        "maintenance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "verification": { "type": "number", "minimum": 0, "maximum": 1 },
+        "documentation": { "type": "number", "minimum": 0, "maximum": 1 },
+        "authority": { "type": "number", "minimum": 0, "maximum": 1 },
+        "safety": { "type": "number", "minimum": 0, "maximum": 1 },
+        "popularity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "quality": { "type": "number", "minimum": 0, "maximum": 1 },
+        "finalScore": { "type": "number", "minimum": 0, "maximum": 100 }
+      },
+      "required": ["relevance", "compatibility", "maintenance", "verification", "documentation", "authority", "safety", "popularity", "quality", "finalScore"]
+    },
+    "firstIndexedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastSeenAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastUpdatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}

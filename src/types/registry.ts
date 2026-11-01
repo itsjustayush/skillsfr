@@ -1,14 +1,19 @@
 export type ResourceKind = 'mcp' | 'skill' | 'dataset' | 'benchmark' | 'kit' | 'workflow' | 'tool';
 
 export type VerificationStatus = 
-  | 'indexed'          // Metadata scraped from source
-  | 'parsed'           // Manifest, dependencies & README understood
-  | 'verified'         // Passed automated checks
-  | 'runtime-tested'   // Executed in sandbox
-  | 'security-reviewed'// Security & permission audit completed
-  | 'community-used';  // Verified by active developers
+  | 'indexed'
+  | 'parsed'
+  | 'metadata-checked'
+  | 'install-tested'
+  | 'runtime-tested'
+  | 'security-reviewed'
+  | 'community-used'
+  | 'verified'
+  | 'stale'
+  | 'broken'
+  | 'delisted';
 
-export type RiskLevel = 'low' | 'medium' | 'high' | 'experimental';
+export type RiskLevel = 'unknown' | 'low' | 'medium' | 'high' | 'critical' | 'experimental';
 
 export interface SharedMetadata {
   id: string;
@@ -34,6 +39,9 @@ export interface SharedMetadata {
   reviewCount: number;
   tags: string[];
   category: string;
+  primaryCategory?: string;
+  secondaryCategories?: string[];
+  capabilityTags?: string[];
   subcategory?: string;
   version: string;
   status: VerificationStatus;

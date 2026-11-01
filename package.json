@@ -1,14 +1,22 @@
 {
   "name": "skillsfr",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "The centralized, community-driven developer resource registry for AI agents and developers.",
   "type": "module",
+  "bin": {
+    "skillsfr": "./bin/skillsfr.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "registry"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "sync": "node scripts/live_sync.js && node scripts/update_readme.js",
-    "refresh-readme": "node scripts/update_readme.js",
+    "sync": "python scripts/discover.py && python scripts/classify.py && python scripts/rank.py && python scripts/generate_readme.py",
+    "refresh-readme": "python scripts/generate_readme.py",
     "preview": "vite preview"
   },
   "dependencies": {

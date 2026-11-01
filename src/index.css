@@ -1249,49 +1249,48 @@ body {
 }
 
 /* ==========================================================================
-   REALTIME LIVE SYNC BAR & CONNECTORS
+   CANONICAL REGISTRY DATABASE STATUS BAR
    ========================================================================== */
-.live-sync-bar {
+.canonical-registry-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 12px 18px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   gap: 16px;
   flex-wrap: wrap;
 }
 
-.live-sync-status {
+.canonical-registry-status {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13px;
+  gap: 12px;
+  font-size: 13.5px;
   color: var(--text-primary);
 }
 
-.live-pulse-dot {
-  width: 8px;
-  height: 8px;
+.canonical-status-indicator {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-  animation: pulseLight 2s infinite ease-in-out;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
-[data-theme="light"] .live-pulse-dot {
+[data-theme="light"] .canonical-status-indicator {
   background: #09090b;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
 }
 
-.live-sync-meta {
+.canonical-status-meta {
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: 12.5px;
 }
 
-.live-sync-actions {
+.canonical-registry-meta-tags {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1304,29 +1303,6 @@ body {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-@keyframes pulseLight {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-.sync-toast-notice {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1200;
-  padding: 12px 20px;
-  border-radius: var(--radius-md);
-  background: var(--bg-card);
-  border: 1px solid var(--border-strong);
-  box-shadow: var(--shadow-lg);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13.5px;
-  animation: scaleIn 180ms ease-out;
-  color: var(--text-primary);
 }
 
 /* ==========================================================================

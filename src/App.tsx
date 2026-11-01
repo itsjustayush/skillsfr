@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Sparkles, Search, Layers, Cpu, Box, Award, 
   Terminal, ExternalLink, Copy, Check, Moon, Sun, 
-  RefreshCw, FileText, Mail, Calculator, Globe, Key, Webhook, Activity, AlertCircle, CheckCircle2
+  RefreshCw, FileText, Mail, Calculator
 } from 'lucide-react';
 
 import StrokeText from './components/reactbits/StrokeText';
@@ -20,7 +20,7 @@ import {
   calculateBayesianRating, calculatePopularityScore 
 } from './utils/engine';
 import { SITE_CONFIG } from './utils/config';
-import { executeLiveSyncSweep } from './utils/connectors/liveSync';
+import { CANONICAL_RESOURCES } from './data/canonicalAdapter';
 
 type TabView = 'registry' | 'router' | 'templates' | 'updates' | 'methodology' | 'newsletter' | 'cli';
 
@@ -31,19 +31,9 @@ export const App: React.FC = () => {
   // Active navigation view
   const [activeTab, setActiveTab] = useState<TabView>('registry');
 
-  // Live Sync & Resource State
-  const [resources, setResources] = useState<ResourceItem[]>(INITIAL_RESOURCES);
-  const [events, setEvents] = useState<RegistryEvent[]>(REGISTRY_EVENTS);
-  const [isSyncing, setIsSyncing] = useState(false);
-  const [syncToast, setSyncToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
-  const [lastSyncedTime, setLastSyncedTime] = useState<Date>(new Date());
-  const [autoSyncEnabled, setAutoSyncEnabled] = useState(false);
-  const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
-
-  // Source Credentials
-  const [ghTokenInput, setGhTokenInput] = useState(() => (typeof window !== 'undefined' ? localStorage.getItem('skillsfr_gh_token') || '' : ''));
-  const [hfTokenInput, setHfTokenInput] = useState(() => (typeof window !== 'undefined' ? localStorage.getItem('skillsfr_hf_token') || '' : ''));
-  const [kaggleKeyInput, setKaggleKeyInput] = useState(() => (typeof window !== 'undefined' ? localStorage.getItem('skillsfr_kaggle_key') || '' : ''));
+  // Canonical Resource State (Synchronized from Neon PostgreSQL & Registry snapshot)
+  const [resources] = useState<ResourceItem[]>(CANONICAL_RESOURCES);
+  const [events] = useState<RegistryEvent[]>(REGISTRY_EVENTS);
 
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState('');
@@ -61,7 +51,7 @@ export const App: React.FC = () => {
   // Intent router state
   const [routerInput, setRouterInput] = useState('Build an accessible, responsive Next.js frontend with animations');
   const [resolvedPlan, setResolvedPlan] = useState(() => 
-    resolveIntentForAgent('Build an accessible, responsive Next.js frontend with animations', INITIAL_RESOURCES)
+    resolveIntentForAgent('Build an accessible, responsive Next.js frontend with animations', CANONICAL_RESOURCES)
   );
 
   // Templates state
@@ -86,7 +76,7 @@ export const App: React.FC = () => {
   const [cliHistory, setCliHistory] = useState<Array<{ command: string; output: string }>>([
     { 
       command: 'skillsfr doctor', 
-      output: '✓ Node.js detected: v24.19.0\n✓ Git detected\n✓ Skillsfr Registry connectivity: Online (skillsfr.vercel.app)\n✓ Ready for AI agent skill installation.' 
+      output: '✓ Node.js detected: v24.19.0\n✓ Git detected\n✓ Skillsfr Registry connectivity: Online (https://skillsfr.vercel.app)\n✓ Ready for AI agent skill installation.' 
     }
   ]);
 
@@ -111,60 +101,6 @@ export const App: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
-
-  // Live Sync trigger handler
-  const triggerLiveSync = async () => {
-    setIsSyncing(true);
-    try {
-      const result = await executeLiveSyncSweep(resources, {
-        githubToken: ghTokenInput,
-        hfToken: hfTokenInput,
-        kaggleKey: kaggleKeyInput
-      });
-
-      if (result.error) {
-        setSyncToast({ message: `Sync warning: ${result.error}`, type: 'error' });
-      } else {
-        setResources(result.resources);
-        if (result.events.length > 0) {
-          setEvents(prev => [...result.events, ...prev].slice(0, 50));
-        }
-        setLastSyncedTime(new Date());
-        setSyncToast({
-          message: `✓ Realtime sweep complete: ${result.totalScannedCount} scanned from GitHub, Hugging Face, Kaggle (${result.newlyDiscoveredCount} newly indexed) in ${result.latencyMs}ms`,
-          type: 'success'
-        });
-      }
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      setSyncToast({ message: `Sync failed: ${msg}`, type: 'error' });
-    } finally {
-      setIsSyncing(false);
-      setTimeout(() => setSyncToast(null), 5000);
-    }
-  };
-
-  // Background auto-sync timer (every 45s) when enabled
-  useEffect(() => {
-    if (!autoSyncEnabled) return;
-    const interval = setInterval(() => {
-      triggerLiveSync();
-    }, 45000);
-    return () => clearInterval(interval);
-  }, [autoSyncEnabled, resources, ghTokenInput, hfTokenInput, kaggleKeyInput]);
-
-  const saveCredentials = (gh: string, hf: string, kg: string) => {
-    setGhTokenInput(gh);
-    setHfTokenInput(hf);
-    setKaggleKeyInput(kg);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('skillsfr_gh_token', gh);
-      localStorage.setItem('skillsfr_hf_token', hf);
-      localStorage.setItem('skillsfr_kaggle_key', kg);
-    }
-    setSyncToast({ message: '✓ API credentials saved for realtime ingestion', type: 'success' });
-    setTimeout(() => setSyncToast(null), 4000);
-  };
 
   // Filtered & Ranked resources
   const filteredResources = useMemo(() => {
@@ -483,34 +419,20 @@ export const App: React.FC = () => {
             ================================================================== */}
         {activeTab === 'registry' && (
           <div>
-            {/* Realtime Live Sync Header Status Bar */}
-            <div className="live-sync-bar">
-              <div className="live-sync-status">
-                <span className="live-pulse-dot" />
-                <span style={{ fontWeight: 600 }}>Realtime Sync Active</span>
-                <span className="live-sync-meta">• Sources: GitHub, Hugging Face, Kaggle, Smithery</span>
-                <span className="live-sync-meta">• {resources.length} resources indexed</span>
+            {/* Canonical Registry Database Bar */}
+            <div className="canonical-registry-bar">
+              <div className="canonical-registry-status">
+                <span className="canonical-status-indicator" />
+                <span style={{ fontWeight: 600 }}>Neon PostgreSQL Registry</span>
+                <span className="canonical-status-meta">• 24/7 Verified Ingestion Pipeline Active</span>
+                <span className="canonical-status-meta">• {resources.length} canonical resources</span>
               </div>
 
-              <div className="live-sync-actions">
-                <button 
-                  type="button" 
-                  className="nav-btn" 
-                  onClick={triggerLiveSync}
-                  disabled={isSyncing}
-                >
-                  <RefreshCw size={13} className={isSyncing ? 'spin-icon' : ''} />
-                  <span>{isSyncing ? 'Syncing...' : 'Sync Now'}</span>
-                </button>
-
-                <button 
-                  type="button" 
-                  className="nav-btn"
-                  onClick={() => setIsConnectModalOpen(true)}
-                >
-                  <Globe size={13} />
-                  <span>Source Connectors</span>
-                </button>
+              <div className="canonical-registry-meta-tags">
+                <span className="card-kind-badge mcp">GitHub</span>
+                <span className="card-kind-badge dataset">Hugging Face</span>
+                <span className="card-kind-badge benchmark">Kaggle</span>
+                <span className="card-kind-badge kit">Curated Kits</span>
               </div>
             </div>
 
@@ -1466,262 +1388,6 @@ export const App: React.FC = () => {
           )}
         </AnimatedDrawer>
 
-        {/* ==================================================================
-            SOURCE CONNECTORS & REALTIME SYNC DRAWER
-            ================================================================== */}
-        <AnimatedDrawer
-          isOpen={isConnectModalOpen}
-          onClose={() => setIsConnectModalOpen(false)}
-          title="Realtime Source Connectors"
-          subtitle="Continuous multi-platform ingestion across GitHub, Hugging Face, Kaggle & Open Source"
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {/* Status Summary Banner */}
-            <div style={{ 
-              padding: '16px', 
-              background: 'var(--bg-secondary)', 
-              borderRadius: 'var(--radius-md)', 
-              border: '1px solid var(--border-subtle)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '12px'
-            }}>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                  <span className="live-pulse-dot" />
-                  <strong style={{ fontSize: '14px' }}>Realtime Sync Active</strong>
-                </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                  Last synchronized: {lastSyncedTime.toLocaleTimeString()} • {resources.length} total resources
-                </div>
-              </div>
-              <button 
-                type="button" 
-                className="primary-btn" 
-                onClick={triggerLiveSync}
-                disabled={isSyncing}
-                style={{ padding: '8px 16px', fontSize: '13px' }}
-              >
-                <RefreshCw size={13} className={isSyncing ? 'spin-icon' : ''} />
-                <span>{isSyncing ? 'Syncing...' : 'Run Live Sweep'}</span>
-              </button>
-            </div>
-
-            {/* Auto-Sync Toggle */}
-            <div style={{ 
-              padding: '16px', 
-              background: 'var(--bg-card)', 
-              borderRadius: 'var(--radius-md)', 
-              border: '1px solid var(--border-subtle)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-              <div>
-                <strong style={{ fontSize: '14px', display: 'block' }}>Automatic In-Browser Polling</strong>
-                <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-                  Polls upstream APIs every 45 seconds while Skillsfr is open in your browser tab.
-                </span>
-              </div>
-              <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: '8px' }}>
-                <input 
-                  type="checkbox" 
-                  checked={autoSyncEnabled} 
-                  onChange={e => setAutoSyncEnabled(e.target.checked)}
-                  style={{ width: '18px', height: '18px', accentColor: 'var(--text-primary)' }}
-                />
-                <span style={{ fontSize: '13px', fontWeight: 600 }}>{autoSyncEnabled ? 'Enabled' : 'Disabled'}</span>
-              </label>
-            </div>
-
-            {/* Source Connectors Configuration */}
-            <div>
-              <h4 style={{ fontSize: '15px', fontWeight: 600, marginBottom: '12px' }}>
-                API Connectors & Credentials
-              </h4>
-              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px' }}>
-                Skillsfr works immediately without API keys using public unauthenticated quotas. Adding your own read-only tokens unlocks maximum concurrency and removes rate limits.
-              </p>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {/* GitHub Connector */}
-                <div style={{ padding: '16px', background: 'var(--bg-card)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                    <div>
-                      <strong style={{ fontSize: '14px' }}>1. GitHub Search & Topic API</strong>
-                      <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                        MCP Servers, agent skills repositories, tools and STARTER packs
-                      </div>
-                    </div>
-                    <span className="card-kind-badge mcp">Quota: {ghTokenInput ? '5,000 req/hr' : '60 req/hr'}</span>
-                  </div>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-                    <Key size={12} />
-                    <span>Personal Access Token (Classic or Fine-Grained `public_repo` scope)</span>
-                  </label>
-                  <input 
-                    type="password" 
-                    value={ghTokenInput}
-                    onChange={e => setGhTokenInput(e.target.value)}
-                    placeholder="ghp_xxxxxxxxxxxxxxxxxxxx (Optional for low volume)"
-                    style={{ 
-                      width: '100%', 
-                      padding: '8px 12px', 
-                      background: 'var(--bg-input)', 
-                      border: '1px solid var(--border-strong)', 
-                      borderRadius: 'var(--radius-sm)', 
-                      color: 'var(--text-primary)',
-                      fontSize: '13px',
-                      fontFamily: 'var(--font-mono)'
-                    }}
-                  />
-                </div>
-
-                {/* Hugging Face Connector */}
-                <div style={{ padding: '16px', background: 'var(--bg-card)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                    <div>
-                      <strong style={{ fontSize: '14px' }}>2. Hugging Face Hub API</strong>
-                      <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                        Datasets, benchmark test sets, evaluation leaderboards, models
-                      </div>
-                    </div>
-                    <span className="card-kind-badge dataset">Unlimited Free Read API</span>
-                  </div>
-                  <label style={{ display: 'block', fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-                    User Access Token (Read Role)
-                  </label>
-                  <input 
-                    type="password" 
-                    value={hfTokenInput}
-                    onChange={e => setHfTokenInput(e.target.value)}
-                    placeholder="hf_xxxxxxxxxxxxxxxxxxxx (Optional)"
-                    style={{ 
-                      width: '100%', 
-                      padding: '8px 12px', 
-                      background: 'var(--bg-input)', 
-                      border: '1px solid var(--border-strong)', 
-                      borderRadius: 'var(--radius-sm)', 
-                      color: 'var(--text-primary)',
-                      fontSize: '13px',
-                      fontFamily: 'var(--font-mono)'
-                    }}
-                  />
-                </div>
-
-                {/* Kaggle Connector */}
-                <div style={{ padding: '16px', background: 'var(--bg-card)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                    <div>
-                      <strong style={{ fontSize: '14px' }}>3. Kaggle Datasets & Benchmarks</strong>
-                      <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                        Curated community datasets and evaluation ground truths
-                      </div>
-                    </div>
-                    <span className="card-kind-badge benchmark">Account API Key</span>
-                  </div>
-                  <label style={{ display: 'block', fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-                    Kaggle API Key (`kaggle.json` token)
-                  </label>
-                  <input 
-                    type="password" 
-                    value={kaggleKeyInput}
-                    onChange={e => setKaggleKeyInput(e.target.value)}
-                    placeholder="username:xxxxxxxx (Optional)"
-                    style={{ 
-                      width: '100%', 
-                      padding: '8px 12px', 
-                      background: 'var(--bg-input)', 
-                      border: '1px solid var(--border-strong)', 
-                      borderRadius: 'var(--radius-sm)', 
-                      color: 'var(--text-primary)',
-                      fontSize: '13px',
-                      fontFamily: 'var(--font-mono)'
-                    }}
-                  />
-                </div>
-
-                {/* Open Source & Other Mirrors */}
-                <div style={{ padding: '16px', background: 'var(--bg-card)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <div>
-                      <strong style={{ fontSize: '14px' }}>4. Community Mirrors (Smithery, OpenML, PapersWithCode)</strong>
-                      <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '2px' }}>
-                        Public open-source registry manifests mirrored automatically with zero authorization required.
-                      </div>
-                    </div>
-                    <span className="card-kind-badge kit">Public Mirrors</span>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', gap: '12px' }}>
-                  <button 
-                    type="button" 
-                    className="primary-btn" 
-                    onClick={() => saveCredentials(ghTokenInput, hfTokenInput, kaggleKeyInput)}
-                    style={{ flex: 1, justifyContent: 'center' }}
-                  >
-                    <Check size={14} />
-                    <span>Save Credentials to Local Storage</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Webhook & 24/7 CI/CD Automation Guide */}
-            <div>
-              <h4 style={{ fontSize: '15px', fontWeight: 600, marginBottom: '12px' }}>
-                24/7 Serverless Realtime Sync Options
-              </h4>
-              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px' }}>
-                To keep your registry synced even when no browser is open, choose any of these zero-cost methods:
-              </p>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '13px' }}>
-                <div style={{ padding: '14px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                  <strong style={{ color: 'var(--text-primary)' }}>Option A: GitHub Actions Cron (Built-in)</strong>
-                  <p style={{ color: 'var(--text-secondary)', marginTop: '4px' }}>
-                    Runs <code>.github/workflows/skillsfr-refresh.yml</code> every 6 hours (or custom cron). Crawls GitHub & Hugging Face, scores resources, and commits to the repository automatically.
-                  </p>
-                </div>
-
-                <div style={{ padding: '14px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Webhook size={14} />
-                    <strong style={{ color: 'var(--text-primary)' }}>Option B: Webhook Ingestion</strong>
-                  </div>
-                  <p style={{ color: 'var(--text-secondary)', marginTop: '4px' }}>
-                    Point any GitHub or Hugging Face webhook to:
-                  </p>
-                  <code style={{ display: 'block', padding: '6px 10px', background: 'var(--bg-card)', marginTop: '6px', borderRadius: 'var(--radius-sm)', fontSize: '12px' }}>
-                    https://skillsfr.vercel.app/api/webhooks/registry
-                  </code>
-                </div>
-
-                <div style={{ padding: '14px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                  <strong style={{ color: 'var(--text-primary)' }}>Option C: CLI or Server Cron</strong>
-                  <p style={{ color: 'var(--text-secondary)', marginTop: '4px' }}>
-                    Run anytime from terminal or crontab:
-                  </p>
-                  <code style={{ display: 'block', padding: '6px 10px', background: 'var(--bg-card)', marginTop: '6px', borderRadius: 'var(--radius-sm)', fontSize: '12px' }}>
-                    npm run sync
-                  </code>
-                </div>
-              </div>
-            </div>
-          </div>
-        </AnimatedDrawer>
-
-        {/* Global Toast Notification */}
-        {syncToast && (
-          <div className="sync-toast-notice">
-            {syncToast.type === 'success' && <CheckCircle2 size={16} />}
-            {syncToast.type === 'error' && <AlertCircle size={16} />}
-            {syncToast.type === 'info' && <Activity size={16} />}
-            <span>{syncToast.message}</span>
-          </div>
-        )}
       </main>
 
       {/* ====================================================================

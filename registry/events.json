@@ -1,63 +1,702 @@
 [
   {
-    "id": "evt-1793536045352",
-    "timestamp": "2026-11-01T12:27:25.352Z",
-    "type": "live_sync_sweep",
-    "scannedSources": [
-      "GitHub",
-      "Hugging Face"
-    ],
-    "itemsScanned": 20,
-    "newlyIndexed": 0,
-    "totalIndexed": 20
+"id": "evt-1793541568694-huggingface-DibaAi/b",
+    "resourceId": "huggingface:DibaAi/beam-dibaguard-eval",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T13:59:11.323241+00:00",
+    "summary": "Discovered new BENCHMARK: beam-dibaguard-eval from huggingface."
   },
   {
-    "id": "evt-1793535545716",
-    "timestamp": "2026-11-01T12:19:05.716Z",
-    "type": "live_sync_sweep",
-    "scannedSources": [
-      "GitHub",
-      "Hugging Face"
-    ],
-    "itemsScanned": 20,
-    "newlyIndexed": 0,
-    "totalIndexed": 20
+    "id": "evt-1793537216800-github-microsoft/pla",
+    "resourceId": "github:microsoft/playwright-mcp",
+    "eventType": "updated",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Updated MCP: playwright-mcp (new content revision detected)."
   },
   {
-    "id": "evt-1793534204677",
-    "timestamp": "2026-11-01T11:56:44.677Z",
-    "type": "live_sync_sweep",
-    "scannedSources": [
-      "GitHub",
-      "Hugging Face"
-    ],
-    "itemsScanned": 20,
-    "newlyIndexed": 10,
-    "totalIndexed": 20
+    "id": "evt-1793537216800-github-DayuanJiang/n",
+    "resourceId": "github:DayuanJiang/next-ai-draw-io",
+    "eventType": "updated",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Updated MCP: next-ai-draw-io (new content revision detected)."
   },
   {
-    "id": "evt-1793534034675",
-    "timestamp": "2026-11-01T11:53:54.675Z",
-    "type": "live_sync_sweep",
-    "scannedSources": [
-      "GitHub",
-      "Hugging Face"
-    ],
-    "itemsScanned": 10,
-    "newlyIndexed": 10,
-    "totalIndexed": 10
+    "id": "evt-1793537216801-github-activepieces/",
+    "resourceId": "github:activepieces/activepieces",
+    "eventType": "updated",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Updated MCP: activepieces (new content revision detected)."
   },
   {
-    "id": "evt-1793531517892",
-    "timestamp": "2026-11-01T11:11:57.892Z",
-    "type": "crawler_sweep",
-    "status": "healthy",
-    "scannedSources": [
-      "GitHub",
-      "Hugging Face",
-      "Smithery",
-      "SkillsMP"
-    ],
-    "activeResourcesCount": 10
+    "id": "evt-1793537216801-github-GLips/Figma-C",
+    "resourceId": "github:GLips/Figma-Context-MCP",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: Figma-Context-MCP from github."
+  },
+  {
+    "id": "evt-1793537216801-github-liketrek/TREK",
+    "resourceId": "github:liketrek/TREK",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: TREK from github."
+  },
+  {
+    "id": "evt-1793537216801-github-apify/apify-m",
+    "resourceId": "github:apify/apify-mcp-server",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: apify-mcp-server from github."
+  },
+  {
+    "id": "evt-1793537216801-github-modelcontextp",
+    "resourceId": "github:modelcontextprotocol/typescript-sdk",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: typescript-sdk from github."
+  },
+  {
+    "id": "evt-1793537216801-github-hangwin/mcp-c",
+    "resourceId": "github:hangwin/mcp-chrome",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: mcp-chrome from github."
+  },
+  {
+    "id": "evt-1793537216801-github-modelcontextp",
+    "resourceId": "github:modelcontextprotocol/inspector",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: inspector from github."
+  },
+  {
+    "id": "evt-1793537216801-github-mcp-use/mcp-u",
+    "resourceId": "github:mcp-use/mcp-use",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: mcp-use from github."
+  },
+  {
+    "id": "evt-1793537216801-github-mobile-next/m",
+    "resourceId": "github:mobile-next/mobile-mcp",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: mobile-mcp from github."
+  },
+  {
+    "id": "evt-1793537216801-github-homarr-labs/d",
+    "resourceId": "github:homarr-labs/dashboard-icons",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: dashboard-icons from github."
+  },
+  {
+    "id": "evt-1793537216801-github-google-labs-c",
+    "resourceId": "github:google-labs-code/stitch-skills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: stitch-skills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-idosal/git-mc",
+    "resourceId": "github:idosal/git-mcp",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: git-mcp from github."
+  },
+  {
+    "id": "evt-1793537216801-github-webiny/webiny",
+    "resourceId": "github:webiny/webiny-js",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: webiny-js from github."
+  },
+  {
+    "id": "evt-1793537216801-github-headroomlabs-",
+    "resourceId": "github:headroomlabs-ai/headroom",
+    "eventType": "updated",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Updated MCP: headroom (new content revision detected)."
+  },
+  {
+    "id": "evt-1793537216801-github-zylon-ai/priv",
+    "resourceId": "github:zylon-ai/private-gpt",
+    "eventType": "updated",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Updated MCP: private-gpt (new content revision detected)."
+  },
+  {
+    "id": "evt-1793537216801-github-PrefectHQ/fas",
+    "resourceId": "github:PrefectHQ/fastmcp",
+    "eventType": "updated",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Updated MCP: fastmcp (new content revision detected)."
+  },
+  {
+    "id": "evt-1793537216801-github-modelcontextp",
+    "resourceId": "github:modelcontextprotocol/python-sdk",
+    "eventType": "updated",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Updated MCP: python-sdk (new content revision detected)."
+  },
+  {
+    "id": "evt-1793537216801-github-Evil0ctal/Dou",
+    "resourceId": "github:Evil0ctal/Douyin_TikTok_Download_API",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: Douyin_TikTok_Download_API from github."
+  },
+  {
+    "id": "evt-1793537216801-github-rocketride-or",
+    "resourceId": "github:rocketride-org/rocketride-server",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: rocketride-server from github."
+  },
+  {
+    "id": "evt-1793537216801-github-budtmo/docker",
+    "resourceId": "github:budtmo/docker-android",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: docker-android from github."
+  },
+  {
+    "id": "evt-1793537216801-github-0x4m4/hexstri",
+    "resourceId": "github:0x4m4/hexstrike-ai",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: hexstrike-ai from github."
+  },
+  {
+    "id": "evt-1793537216801-github-seleniumbase/",
+    "resourceId": "github:seleniumbase/SeleniumBase",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: SeleniumBase from github."
+  },
+  {
+    "id": "evt-1793537216801-github-BeehiveInnova",
+    "resourceId": "github:BeehiveInnovations/pal-mcp-server",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: pal-mcp-server from github."
+  },
+  {
+    "id": "evt-1793537216801-github-CursorTouch/W",
+    "resourceId": "github:CursorTouch/Windows-MCP",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: Windows-MCP from github."
+  },
+  {
+    "id": "evt-1793537216801-github-awslabs/mcp",
+    "resourceId": "github:awslabs/mcp",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: mcp from github."
+  },
+  {
+    "id": "evt-1793537216801-github-jacob-bd/gemi",
+    "resourceId": "github:jacob-bd/gemini-notebook-mcp-cli",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: gemini-notebook-mcp-cli from github."
+  },
+  {
+    "id": "evt-1793537216801-github-FlorianBrunia",
+    "resourceId": "github:FlorianBruniaux/claude-code-ultimate-guide",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: claude-code-ultimate-guide from github."
+  },
+  {
+    "id": "evt-1793537216801-github-Q00/ouroboros",
+    "resourceId": "github:Q00/ouroboros",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: ouroboros from github."
+  },
+  {
+    "id": "evt-1793537216801-github-HKUDS/nanobot",
+    "resourceId": "github:HKUDS/nanobot",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: nanobot from github."
+  },
+  {
+    "id": "evt-1793537216801-github-DeusData/code",
+    "resourceId": "github:DeusData/codebase-memory-mcp",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: codebase-memory-mcp from github."
+  },
+  {
+    "id": "evt-1793537216801-github-ahujasid/mcp-",
+    "resourceId": "github:ahujasid/mcp-for-blender",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: mcp-for-blender from github."
+  },
+  {
+    "id": "evt-1793537216801-github-pascalorg/edi",
+    "resourceId": "github:pascalorg/editor",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: editor from github."
+  },
+  {
+    "id": "evt-1793537216801-github-xerj-org/xerj",
+    "resourceId": "github:xerj-org/xerj",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: xerj from github."
+  },
+  {
+    "id": "evt-1793537216801-github-microsoft/mcp",
+    "resourceId": "github:microsoft/mcp-for-beginners",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: mcp-for-beginners from github."
+  },
+  {
+    "id": "evt-1793537216801-github-CoplayDev/uni",
+    "resourceId": "github:CoplayDev/unity-mcp",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: unity-mcp from github."
+  },
+  {
+    "id": "evt-1793537216801-github-jub0t/Concat",
+    "resourceId": "github:jub0t/Concat",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: Concat from github."
+  },
+  {
+    "id": "evt-1793537216801-github-holaboss-ai/h",
+    "resourceId": "github:holaboss-ai/holaOS",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: holaOS from github."
+  },
+  {
+    "id": "evt-1793537216801-github-TykTechnologi",
+    "resourceId": "github:TykTechnologies/tyk",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: tyk from github."
+  },
+  {
+    "id": "evt-1793537216801-github-maximhq/bifro",
+    "resourceId": "github:maximhq/bifrost",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new MCP: bifrost from github."
+  },
+  {
+    "id": "evt-1793537216801-github-morluto/rea",
+    "resourceId": "github:morluto/rea",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: rea from github."
+  },
+  {
+    "id": "evt-1793537216801-github-anthropics/sk",
+    "resourceId": "github:anthropics/skills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: skills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-DietrichGeber",
+    "resourceId": "github:DietrichGebert/ponytail",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: ponytail from github."
+  },
+  {
+    "id": "evt-1793537216801-github-addyosmani/ag",
+    "resourceId": "github:addyosmani/agent-skills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: agent-skills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-paperclipai/p",
+    "resourceId": "github:paperclipai/paperclip",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: paperclip from github."
+  },
+  {
+    "id": "evt-1793537216801-github-Leonxlnx/tast",
+    "resourceId": "github:Leonxlnx/taste-skill",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: taste-skill from github."
+  },
+  {
+    "id": "evt-1793537216801-github-nexu-io/open-",
+    "resourceId": "github:nexu-io/open-design",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: open-design from github."
+  },
+  {
+    "id": "evt-1793537216801-github-pbakaus/impec",
+    "resourceId": "github:pbakaus/impeccable",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: impeccable from github."
+  },
+  {
+    "id": "evt-1793537216801-github-tt-a1i/archif",
+    "resourceId": "github:tt-a1i/archify",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: archify from github."
+  },
+  {
+    "id": "evt-1793537216801-github-career-ops-hq",
+    "resourceId": "github:career-ops-hq/career-ops",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: career-ops from github."
+  },
+  {
+    "id": "evt-1793537216801-github-ComposioHQ/aw",
+    "resourceId": "github:ComposioHQ/awesome-claude-skills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: awesome-claude-skills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-cathrynlavery",
+    "resourceId": "github:cathrynlavery/diagram-design",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: diagram-design from github."
+  },
+  {
+    "id": "evt-1793537216801-github-blader/humani",
+    "resourceId": "github:blader/humanizer",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: humanizer from github."
+  },
+  {
+    "id": "evt-1793537216801-github-coreyhaines31",
+    "resourceId": "github:coreyhaines31/marketingskills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: marketingskills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-hesreallyhim/",
+    "resourceId": "github:hesreallyhim/awesome-claude-code",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: awesome-claude-code from github."
+  },
+  {
+    "id": "evt-1793537216801-github-thedotmack/cl",
+    "resourceId": "github:thedotmack/claude-mem",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: claude-mem from github."
+  },
+  {
+    "id": "evt-1793537216801-github-Egonex-AI/Und",
+    "resourceId": "github:Egonex-AI/Understand-Anything",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: Understand-Anything from github."
+  },
+  {
+    "id": "evt-1793537216801-github-code-yeongyu/",
+    "resourceId": "github:code-yeongyu/oh-my-openagent",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: oh-my-openagent from github."
+  },
+  {
+    "id": "evt-1793537216801-github-ayghri/i-have",
+    "resourceId": "github:ayghri/i-have-adhd",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: i-have-adhd from github."
+  },
+  {
+    "id": "evt-1793537216801-github-K-Dense-AI/sc",
+    "resourceId": "github:K-Dense-AI/scientific-agent-skills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: scientific-agent-skills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-wshobson/agen",
+    "resourceId": "github:wshobson/agents",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: agents from github."
+  },
+  {
+    "id": "evt-1793537216801-github-VoltAgent/awe",
+    "resourceId": "github:VoltAgent/awesome-agent-skills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: awesome-agent-skills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-nanocoai/nano",
+    "resourceId": "github:nanocoai/nanoclaw",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: nanoclaw from github."
+  },
+  {
+    "id": "evt-1793537216801-github-alirezarezvan",
+    "resourceId": "github:alirezarezvani/claude-skills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: claude-skills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-alchaincyf/hu",
+    "resourceId": "github:alchaincyf/huashu-design",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: huashu-design from github."
+  },
+  {
+    "id": "evt-1793537216801-github-OthmanAdi/pla",
+    "resourceId": "github:OthmanAdi/planning-with-files",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: planning-with-files from github."
+  },
+  {
+    "id": "evt-1793537216801-github-JimLiu/baoyu-",
+    "resourceId": "github:JimLiu/baoyu-skills",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: baoyu-skills from github."
+  },
+  {
+    "id": "evt-1793537216801-github-SWE-agent/min",
+    "resourceId": "github:SWE-agent/mini-swe-agent",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: mini-swe-agent from github."
+  },
+  {
+    "id": "evt-1793537216801-github-SWE-bench/SWE",
+    "resourceId": "github:SWE-bench/SWE-bench",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: SWE-bench from github."
+  },
+  {
+    "id": "evt-1793537216801-github-Kodezi/Chrono",
+    "resourceId": "github:Kodezi/Chronos",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: Chronos from github."
+  },
+  {
+    "id": "evt-1793537216801-github-AutoCodeRover",
+    "resourceId": "github:AutoCodeRoverSG/auto-code-rover",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: auto-code-rover from github."
+  },
+  {
+    "id": "evt-1793537216801-github-openai/SWELan",
+    "resourceId": "github:openai/SWELancer-Benchmark",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: SWELancer-Benchmark from github."
+  },
+  {
+    "id": "evt-1793537216801-github-china-qijizhi",
+    "resourceId": "github:china-qijizhifeng/agentic-harness-engineering",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: agentic-harness-engineering from github."
+  },
+  {
+    "id": "evt-1793537216801-github-augmentcode/a",
+    "resourceId": "github:augmentcode/augment-swebench-agent",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: augment-swebench-agent from github."
+  },
+  {
+    "id": "evt-1793537216801-github-SWE-bench/SWE",
+    "resourceId": "github:SWE-bench/SWE-smith",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: SWE-smith from github."
+  },
+  {
+    "id": "evt-1793537216801-github-scaleapi/SWE-",
+    "resourceId": "github:scaleapi/SWE-bench_Pro-os",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: SWE-bench_Pro-os from github."
+  },
+  {
+    "id": "evt-1793537216801-github-multi-swe-ben",
+    "resourceId": "github:multi-swe-bench/multi-swe-bench",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: multi-swe-bench from github."
+  },
+  {
+    "id": "evt-1793537216801-github-jd-opensource",
+    "resourceId": "github:jd-opensource/joycode-agent",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: joycode-agent from github."
+  },
+  {
+    "id": "evt-1793537216801-github-JARVIS-Xs/SE-",
+    "resourceId": "github:JARVIS-Xs/SE-Agent",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: SE-Agent from github."
+  },
+  {
+    "id": "evt-1793537216801-github-SWE-bench/exp",
+    "resourceId": "github:SWE-bench/experiments",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: experiments from github."
+  },
+  {
+    "id": "evt-1793537216801-github-microsoft/SWE",
+    "resourceId": "github:microsoft/SWE-bench-Live",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: SWE-bench-Live from github."
+  },
+  {
+    "id": "evt-1793537216801-github-hwfengcs/DM-C",
+    "resourceId": "github:hwfengcs/DM-Code-Agent",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: DM-Code-Agent from github."
+  },
+  {
+    "id": "evt-1793537216801-github-anthropics/sk",
+    "resourceId": "github:anthropics/skills:frontend-design",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: Frontend Design Skill from github."
+  },
+  {
+    "id": "evt-1793537216801-github-anthropics/sk",
+    "resourceId": "github:anthropics/skills:canvas-design",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: Canvas Design Skill from github."
+  },
+  {
+    "id": "evt-1793537216801-github-vercel-labs/a",
+    "resourceId": "github:vercel-labs/agent-skills:web-design-guidelines",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new SKILL: Web Design Guidelines from github."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-ASLP-lab",
+    "resourceId": "huggingface:ASLP-lab/DRAMA-Eval",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: DRAMA-Eval from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-allganiz",
+    "resourceId": "huggingface:allganize/RAG-Evaluation-Dataset-JA",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: RAG-Evaluation-Dataset-JA from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-OpenLLM-",
+    "resourceId": "huggingface:OpenLLM-France/Luciole-Audio-Evaluation-Dataset",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: Luciole-Audio-Evaluation-Dataset from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-nuriacha",
+    "resourceId": "huggingface:nuriachandra/Deepfake-Eval-2024",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: Deepfake-Eval-2024 from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-nlpllmev",
+    "resourceId": "huggingface:nlpllmeval/NLP-Course-LLM-Reasoning-Eval-May2025",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: NLP-Course-LLM-Reasoning-Eval-May2025 from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-nvidia/T",
+    "resourceId": "huggingface:nvidia/TechQA-RAG-Eval",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: TechQA-RAG-Eval from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-MinaGabr",
+    "resourceId": "huggingface:MinaGabriel/llm-fol-reasoning-eval",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: llm-fol-reasoning-eval from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-Embodied",
+    "resourceId": "huggingface:Embodied-AI-6/eval_pi0.5",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: eval_pi0.5 from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-Embodied",
+    "resourceId": "huggingface:Embodied-AI-6/eval_act",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: eval_act from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-jang1563",
+    "resourceId": "huggingface:jang1563/narrow-model-safety-eval",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: narrow-model-safety-eval from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-robot-le",
+    "resourceId": "huggingface:robot-learning-group47/eval2_bgr_g",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: eval2_bgr_g from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-ioc-proj",
+    "resourceId": "huggingface:ioc-project/ioc-eval-labs",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new BENCHMARK: ioc-eval-labs from huggingface."
+  },
+  {
+    "id": "evt-1793537216801-huggingface-nvidia/N",
+    "resourceId": "huggingface:nvidia/Nemotron-SFT-Agentic-Finance-v1",
+    "eventType": "discovered",
+    "occurredAt": "2026-11-01T12:46:39.497504+00:00",
+    "summary": "Discovered new DATASET: Nemotron-SFT-Agentic-Finance-v1 from huggingface."
   }
 ]

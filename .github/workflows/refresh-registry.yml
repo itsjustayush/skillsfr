@@ -1,0 +1,104 @@
+name: Skillsfr Registry 24/7 Automated Refresh
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: refresh-registry
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: |
+          pip install requests pyyaml python-dotenv psycopg2-binary
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: 1. Discovery & Ingestion Job
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: python scripts/discover.py
+
+      - name: 2. Classification Job
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python scripts/classify.py
+
+      - name: 3. Ranking & Quality Gating Job
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python scripts/rank.py
+
+      - name: 4. README Generation Job
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python scripts/generate_readme.py
+
+      - name: 5. Code Quality & Build Validation
+        run: |
+          npm run lint
+          npm run build
+
+      - name: Check for Git diff
+        id: git-diff
+        run: |
+          git status --porcelain
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 6. Publication Pull Request
+        if: steps.git-diff.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: auto-registry-refresh
+          commit-message: "chore(registry): update registry snapshot & README [skip ci]"
+          title: "chore: update registry README — ${{ steps.date.outputs.date || 'scheduled' }}"
+          body: |
+            ## 🤖 Skillsfr 24/7 Automated Registry Refresh
+
+            This automated pull request updates the registry snapshot and README based on recent discovery sweeps across GitHub, Hugging Face, Kaggle, and open mirrors.
+
+            ### Verified Stages Executed:
+            - **Discovery & Deduplication**: Idempotent SHA256 content hashing.
+            - **Multi-Category Scoring**: Evaluated against `registry/taxonomy.yml`.
+            - **Quality & Multiplicative Ranking**: Evaluated relevance, compatibility, maintenance, safety, and logarithmic popularity.
+            - **Neon Database Persistence**: Synced with canonical PostgreSQL instance.
+            - **Build Validation**: Passed `npm run lint` and `npm run build`.
+          labels: |
+            automated-pr
+            registry-refresh

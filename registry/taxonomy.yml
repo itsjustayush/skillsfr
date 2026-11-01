@@ -1,0 +1,120 @@
+# Skillsfr Resource Taxonomy Specification
+version: "1.0.0"
+kinds:
+  - id: skill
+    name: "Agent Skill"
+    description: "Reusable prompt instructions, procedural knowledge, workflows, and behavioral constraints (e.g. SKILL.md, agent instructions)."
+  - id: workflow
+    name: "Workflow"
+    description: "Multi-step automated developer execution sequences, pipelines, and stateful agent routines."
+  - id: plugin
+    name: "Plugin"
+    description: "Bundled extensions containing skills, tool configs, and agent specifications."
+  - id: mcp
+    name: "MCP Server"
+    description: "Model Context Protocol servers exposing executable tools, resources, and external services to LLM agents."
+  - id: tool
+    name: "Developer Tool"
+    description: "Command-line utilities, linters, analyzers, and runtime bridges for AI workflows."
+  - id: dataset
+    name: "Dataset"
+    description: "Evaluation trajectories, benchmark training data, and ground-truth validation sets."
+  - id: benchmark
+    name: "Benchmark"
+    description: "Standardized evaluation harnesses, test suites, and agent capability leaderboards."
+  - id: kit
+    name: "Starter Pack / Kit"
+    description: "Pre-composed, conflict-free combinations of skills, MCPs, and configs for specific stacks."
+
+scoring_weights:
+  keyword_weight: 0.40
+  manifest_weight: 0.25
+  repository_topic_weight: 0.15
+  dependency_weight: 0.10
+  historical_feedback_weight: 0.10
+
+thresholds:
+  primary_assignment: 0.70
+  secondary_assignment_min: 0.45
+  secondary_assignment_max: 0.69
+
+categories:
+  - id: design
+    name: "Design"
+    description: "UI/UX styling, typography, micro-interactions, layout systems, design tokens, and aesthetic principles."
+    keywords: ["design", "ui", "ux", "styling", "css", "animation", "motion", "typography", "colors", "tokens", "interface", "tailwind", "figma", "theme"]
+    manifest_patterns: ["design", "ui-ux", "theme", "aesthetic"]
+    topics: ["design", "ui", "ux", "styling", "css", "animation", "theme", "design-system"]
+    dependencies: ["tailwind", "framer-motion", "lucide", "radix-ui"]
+
+  - id: frontend
+    name: "Frontend"
+    description: "Client-side development, Web APIs, React, Next.js, Vue, Svelte, Angular, DOM interactions, responsive components."
+    keywords: ["frontend", "react", "nextjs", "vue", "svelte", "angular", "dom", "html", "browser", "javascript", "typescript", "component", "vite", "client"]
+    manifest_patterns: ["frontend", "web", "react", "nextjs", "client"]
+    topics: ["frontend", "react", "nextjs", "vue", "javascript", "typescript", "web", "browser"]
+    dependencies: ["react", "next", "vue", "vite", "svelte"]
+
+  - id: backend
+    name: "Backend"
+    description: "Server runtimes, REST/GraphQL APIs, databases, microservices, auth, caching, and server-side business logic."
+    keywords: ["backend", "api", "database", "sql", "postgres", "fastapi", "express", "node", "django", "server", "rest", "graphql", "orm", "endpoint"]
+    manifest_patterns: ["backend", "server", "api", "database", "crud"]
+    topics: ["backend", "api", "database", "sql", "postgres", "node", "python", "server"]
+    dependencies: ["express", "fastapi", "sqlalchemy", "prisma", "pg"]
+
+  - id: testing
+    name: "Testing"
+    description: "Unit testing, integration testing, E2E browser automation, test harnesses, mock generation, and regression coverage."
+    keywords: ["test", "testing", "pytest", "jest", "vitest", "playwright", "cypress", "mock", "coverage", "e2e", "unit-test", "harness", "assert"]
+    manifest_patterns: ["test", "testing", "e2e", "mock", "spec"]
+    topics: ["testing", "test", "pytest", "playwright", "jest", "vitest", "e2e"]
+    dependencies: ["pytest", "jest", "vitest", "playwright", "cypress"]
+
+  - id: devops
+    name: "DevOps"
+    description: "Continuous integration, deployment workflows, Docker containers, Kubernetes, infrastructure as code, cloud provisioning."
+    keywords: ["devops", "ci", "cd", "docker", "kubernetes", "deploy", "vercel", "aws", "gcp", "actions", "terraform", "infrastructure", "pipeline"]
+    manifest_patterns: ["devops", "ci-cd", "docker", "deploy", "infra"]
+    topics: ["devops", "ci-cd", "docker", "kubernetes", "github-actions", "cloud", "infra"]
+    dependencies: ["docker", "terraform", "kubernetes"]
+
+  - id: security
+    name: "Security"
+    description: "Vulnerability auditing, authorization boundaries, permission sandboxes, secret management, AST checks, security disclosures."
+    keywords: ["security", "auth", "permission", "audit", "sandbox", "vulnerability", "encryption", "cve", "secret", "guardrail", "policy", "tokens"]
+    manifest_patterns: ["security", "audit", "auth", "guardrails", "safe"]
+    topics: ["security", "auth", "sandbox", "audit", "vulnerability", "guardrails"]
+    dependencies: ["crypto", "bcrypt", "jose", "helmet"]
+
+  - id: research
+    name: "Research"
+    description: "Model experimentation, academic papers, evaluation methodologies, reasoning trajectories, benchmarking results."
+    keywords: ["research", "paper", "arxiv", "eval", "evaluation", "reasoning", "benchmark", "experiment", "accuracy", "leaderboard", "model"]
+    manifest_patterns: ["research", "eval", "benchmark", "paper"]
+    topics: ["research", "ai", "benchmark", "evaluation", "llm", "arxiv"]
+    dependencies: ["torch", "transformers", "numpy", "scipy"]
+
+  - id: data
+    name: "Data"
+    description: "Datasets, feature pipelines, embeddings, vector databases, synthetic data generation, ETL, and data curation."
+    keywords: ["data", "dataset", "dataframe", "pandas", "parquet", "sql", "embedding", "vector", "etl", "corpus", "synthetic", "huggingface", "kaggle"]
+    manifest_patterns: ["dataset", "data", "corpus", "tabular", "features"]
+    topics: ["dataset", "data", "machine-learning", "huggingface", "kaggle", "embeddings"]
+    dependencies: ["pandas", "datasets", "pyarrow", "duckdb"]
+
+  - id: productivity
+    name: "Productivity"
+    description: "Developer ergonomics, scaffolding, CLI automation, documentation generation, note taking, knowledge bases."
+    keywords: ["productivity", "cli", "scaffold", "automation", "doc", "readme", "generator", "snippets", "workflow", "tooling", "terminal"]
+    manifest_patterns: ["cli", "productivity", "generator", "utility"]
+    topics: ["productivity", "cli", "developer-tools", "automation", "utility"]
+    dependencies: ["click", "commander", "rich"]
+
+  - id: agent_architecture
+    name: "Agent Architecture"
+    description: "Context windows, intent routing, multi-agent orchestration, tool calling, subagent delegation, token budget management."
+    keywords: ["agent", "mcp", "orchestration", "multi-agent", "subagent", "tool-calling", "intent", "router", "context", "tokens", "autonomous", "prompt"]
+    manifest_patterns: ["agent", "mcp-server", "orchestrator", "autonomous"]
+    topics: ["agent", "ai-agent", "mcp", "autonomous-agents", "multi-agent", "llm-agent"]
+    dependencies: ["@modelcontextprotocol/sdk", "langchain", "mcp"]
