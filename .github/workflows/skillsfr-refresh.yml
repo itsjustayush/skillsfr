@@ -1,0 +1,64 @@
+name: Skillsfr Registry 24/7 Refresh
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'registry/**'
+      - 'scripts/**'
+
+concurrency:
+  group: skillsfr-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Run 24/7 Ingestion & Scoring Crawler
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/indexer.js
+
+      - name: Regenerate README with chronological categorized entries
+        run: node scripts/update_readme.js
+
+      - name: Check for Git diff
+        id: git-diff
+        run: |
+          git status --porcelain
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit & Push updated README and Registry logs
+        if: steps.git-diff.outputs.has_changes == 'true'
+        run: |
+          git config --global user.name "Skillsfr Bot"
+          git config --global user.email "bot@skillsfr.dev"
+          git add README.md registry/
+          git commit -m "chore(registry): 24/7 auto-refresh indexed resources [skip ci]"
+          git push origin main
