@@ -1,0 +1,15 @@
+[
+  {
+    "id": "evt-1793531517892",
+    "timestamp": "2026-11-01T11:11:57.892Z",
+    "type": "crawler_sweep",
+    "status": "healthy",
+    "scannedSources": [
+      "GitHub",
+      "Hugging Face",
+      "Smithery",
+      "SkillsMP"
+    ],
+    "activeResourcesCount": 10
+  }
+]
