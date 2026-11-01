@@ -61,12 +61,12 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({ isOpen, onClose, i
 
   const getCategoryIcon = (cat: string) => {
     switch (cat) {
-      case 'mcp': return <Cpu size={16} className="text-purple" />;
-      case 'skill': return <Sparkles size={16} className="text-cyan" />;
-      case 'kit': return <Layers size={16} className="text-emerald" />;
-      case 'dataset': return <Box size={16} className="text-amber" />;
-      case 'template': return <FileText size={16} className="text-indigo" />;
-      default: return <Command size={16} className="text-muted" />;
+      case 'mcp': return <Cpu size={16} style={{ color: 'var(--text-primary)' }} />;
+      case 'skill': return <Sparkles size={16} style={{ color: 'var(--text-primary)' }} />;
+      case 'kit': return <Layers size={16} style={{ color: 'var(--text-primary)' }} />;
+      case 'dataset': return <Box size={16} style={{ color: 'var(--text-secondary)' }} />;
+      case 'template': return <FileText size={16} style={{ color: 'var(--text-secondary)' }} />;
+      default: return <Command size={16} style={{ color: 'var(--text-muted)' }} />;
     }
   };
 

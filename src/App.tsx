@@ -240,7 +240,7 @@ export const App: React.FC = () => {
         <div className="app-container nav-inner">
           <a href="/" className="nav-brand" onClick={(e) => { e.preventDefault(); setActiveTab('registry'); }}>
             <div className="brand-logo-mark">
-              <Sparkles size={18} color="#ffffff" />
+              <Sparkles size={18} />
             </div>
             <div className="brand-text-group">
               <span className="brand-name">Skillsfr</span>
@@ -356,10 +356,10 @@ export const App: React.FC = () => {
             <div className="hero-stroke-wrapper">
               <StrokeText 
                 text="Skillsfr"
-                strokeColor="#a78bfa"
-                fillColor={theme === 'dark' ? '#f8fafc' : '#0f172a'}
+                strokeColor={theme === 'dark' ? '#71717a' : '#a1a1aa'}
+                fillColor={theme === 'dark' ? '#fafafa' : '#09090b'}
                 fontSize={96}
-                strokeWidth={1.5}
+                strokeWidth={1.4}
                 drawDuration={1.4}
                 trigger="mount"
                 fillMode="wipe"
@@ -397,9 +397,9 @@ export const App: React.FC = () => {
                 className="terminal-pill-btn"
                 onClick={() => copyToClipboard('npx skills add skillsfr/agent', 'quickstart-cmd')}
               >
-                <Terminal size={14} color="#06b6d4" />
+                <Terminal size={14} />
                 <span>npx skills add skillsfr/agent</span>
-                {copiedId === 'quickstart-cmd' ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
+                {copiedId === 'quickstart-cmd' ? <Check size={14} /> : <Copy size={14} />}
               </button>
             </div>
           </section>
@@ -621,28 +621,28 @@ export const App: React.FC = () => {
             {/* Token Savings Metric Bar */}
             <div className="token-savings-bar">
               <div className="token-metric">
-                <div className="token-metric-val font-mono" style={{ color: 'var(--accent-rose)' }}>
+                <div className="token-metric-val font-mono" style={{ color: 'var(--text-muted)' }}>
                   {resolvedPlan.tokenCostRawEstimate.toLocaleString()}
                 </div>
                 <div className="token-metric-label">Raw Full-Catalogue Dump</div>
               </div>
 
               <div className="token-metric">
-                <div className="token-metric-val font-mono" style={{ color: 'var(--accent-emerald)' }}>
+                <div className="token-metric-val font-mono" style={{ color: 'var(--text-primary)' }}>
                   {resolvedPlan.tokenCostSkillsfrEstimate.toLocaleString()}
                 </div>
                 <div className="token-metric-label">Skillsfr Composed Stream</div>
               </div>
 
               <div className="token-metric">
-                <div className="token-metric-val font-mono" style={{ color: 'var(--accent-purple)' }}>
+                <div className="token-metric-val font-mono" style={{ color: 'var(--text-primary)', fontWeight: 800 }}>
                   {resolvedPlan.tokenReductionPercent}%
                 </div>
                 <div className="token-metric-label">Token Context Reduction</div>
               </div>
 
               <div className="token-metric">
-                <div className="token-metric-val font-mono" style={{ color: 'var(--accent-cyan)' }}>
+                <div className="token-metric-val font-mono" style={{ color: 'var(--text-secondary)' }}>
                   {resolvedPlan.selectedResources.length}
                 </div>
                 <div className="token-metric-label">Selected vs {resolvedPlan.excludedResources.length} Excluded</div>
@@ -839,7 +839,7 @@ export const App: React.FC = () => {
                       href={evt.sourceUrl} 
                       target="_blank" 
                       rel="noreferrer"
-                      style={{ fontSize: '12px', color: 'var(--accent-purple)', textDecoration: 'none' }}
+                      style={{ fontSize: '12px', color: 'var(--text-primary)', textDecoration: 'none' }}
                     >
                       View Source ↗
                     </a>
@@ -983,7 +983,7 @@ export const App: React.FC = () => {
             {/* Quick Command Reference */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginBottom: '24px' }}>
               <div style={{ background: 'var(--bg-card)', padding: '16px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                <strong style={{ fontSize: '14px', color: 'var(--accent-purple)' }}>Dynamic Language Starters</strong>
+                <strong style={{ fontSize: '14px', color: 'var(--text-primary)' }}>Dynamic Language Starters</strong>
                 <pre className="code-preview-block" style={{ marginTop: '8px', fontSize: '12px' }}>
                   npx skillsfr nextjs my-app{'\n'}
                   npx skillsfr python my-api{'\n'}
@@ -993,7 +993,7 @@ export const App: React.FC = () => {
               </div>
 
               <div style={{ background: 'var(--bg-card)', padding: '16px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                <strong style={{ fontSize: '14px', color: 'var(--accent-cyan)' }}>Agent Kit Installation</strong>
+                <strong style={{ fontSize: '14px', color: 'var(--text-primary)' }}>Agent Kit Installation</strong>
                 <pre className="code-preview-block" style={{ marginTop: '8px', fontSize: '12px' }}>
                   npx skillsfr install ui-ux{'\n'}
                   npx skillsfr install frontend-agent{'\n'}
@@ -1004,12 +1004,12 @@ export const App: React.FC = () => {
             </div>
 
             {/* Interactive Browser Terminal */}
-            <div style={{ background: '#000000', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-strong)', overflow: 'hidden' }}>
-              <div style={{ padding: '10px 16px', background: '#0f111a', borderBottom: '1px solid #1f2333', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444' }} />
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#eab308' }} />
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#22c55e' }} />
-                <span style={{ marginLeft: '12px', fontSize: '12px', fontFamily: 'var(--font-mono)', color: '#94a3b8' }}>
+            <div style={{ background: '#09090b', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-strong)', overflow: 'hidden' }}>
+              <div style={{ padding: '10px 16px', background: '#121215', borderBottom: '1px solid #27272a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#52525b' }} />
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#71717a' }} />
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#a1a1aa' }} />
+                <span style={{ marginLeft: '12px', fontSize: '12px', fontFamily: 'var(--font-mono)', color: '#71717a' }}>
                   skillsfr-cli-emulator
                 </span>
               </div>
@@ -1017,13 +1017,13 @@ export const App: React.FC = () => {
               <div style={{ padding: '20px', minHeight: '260px', maxHeight: '380px', overflowY: 'auto', fontFamily: 'var(--font-mono)', fontSize: '13px' }}>
                 {cliHistory.map((item, idx) => (
                   <div key={idx} style={{ marginBottom: '14px' }}>
-                    <div style={{ color: '#a78bfa' }}>$ {item.command}</div>
-                    <pre style={{ color: '#e2e8f0', whiteSpace: 'pre-wrap', marginTop: '4px' }}>{item.output}</pre>
+                    <div style={{ color: '#fafafa', fontWeight: 600 }}><span style={{ color: '#71717a' }}>$ </span>{item.command}</div>
+                    <pre style={{ color: '#d4d4d8', whiteSpace: 'pre-wrap', marginTop: '4px' }}>{item.output}</pre>
                   </div>
                 ))}
 
                 <form onSubmit={handleCliRun} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '12px' }}>
-                  <span style={{ color: '#38bdf8' }}>$</span>
+                  <span style={{ color: '#71717a' }}>$</span>
                   <input 
                     type="text" 
                     value={cliInput}
@@ -1083,7 +1083,7 @@ export const App: React.FC = () => {
                 </p>
 
                 {newsletterSubscribed ? (
-                  <div style={{ padding: '16px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid var(--accent-emerald)', borderRadius: 'var(--radius-md)', color: 'var(--accent-emerald)' }}>
+                  <div style={{ padding: '16px', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid var(--border-strong)', borderRadius: 'var(--radius-md)', color: 'var(--text-primary)' }}>
                     ✓ Check your inbox to confirm your double opt-in subscription!
                   </div>
                 ) : (
@@ -1142,7 +1142,7 @@ export const App: React.FC = () => {
             {/* Newsletter Issue #001 Preview */}
             <div style={{ background: 'var(--bg-card)', padding: '32px', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-subtle)' }}>
               <div style={{ borderBottom: '1px solid var(--border-subtle)', paddingBottom: '16px', marginBottom: '20px' }}>
-                <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--accent-purple)' }}>
+                <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
                   ISSUE 001 • WEEKLY DEVELOPER RESOURCE DIGEST
                 </span>
                 <h3 className="font-serif" style={{ fontSize: '24px', marginTop: '6px' }}>
@@ -1230,7 +1230,7 @@ export const App: React.FC = () => {
                       'drawer-install-cmd'
                     )}
                   >
-                    {copiedId === 'drawer-install-cmd' ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
+                    {copiedId === 'drawer-install-cmd' ? <Check size={14} /> : <Copy size={14} />}
                     <span>Copy</span>
                   </button>
                 </div>
@@ -1357,7 +1357,7 @@ export const App: React.FC = () => {
             <div className="footer-col-brand">
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
                 <div className="brand-logo-mark" style={{ width: '26px', height: '26px' }}>
-                  <Sparkles size={14} color="#ffffff" />
+                  <Sparkles size={14} />
                 </div>
                 <span style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: 700 }}>
                   Skillsfr

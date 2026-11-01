@@ -71,7 +71,7 @@ export interface StrokeTextProps {
 
 export const StrokeText: React.FC<StrokeTextProps> = ({
   text = DEFAULT_TEXT,
-  strokeColor = '#A78BFA',
+  strokeColor = '#71717A',
   fillColor = 'currentColor',
   strokeWidth = 1.4,
   drawDuration = 1.6,
